@@ -13,7 +13,7 @@ export default function AboutSection() {
       y: 0,
       transition: { type: "spring", stiffness: 60, damping: 20 } 
     }
-  };
+  } as const;
 
   return (
     <section id="about" className="w-full flex flex-col items-center py-16 scroll-mt-24">
