@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const GithubLogo = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -12,10 +13,10 @@ const GithubLogo = () => (
 
 const navLinks = [
   { name: "HOME", path: "/" },
-  { name: "ABOUT", path: "/about" },
-  { name: "EXPERIENCE", path: "/experience" },
-  { name: "SKILLS", path: "/skills" },
-  { name: "PROJECTS", path: "/projects" },
+  { name: "ABOUT", path: "/#about" },
+  { name: "EXPERIENCE", path: "/#experience" },
+  { name: "SKILLS", path: "/#skills" },
+  { name: "PROJECTS", path: "/#projects" },
 ];
 
 export default function Navigation() {
@@ -28,18 +29,15 @@ export default function Navigation() {
         {/* 左側：ナビゲーションリンク */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-4">
           {navLinks.map((link) => {
-            const isActive = 
-              link.path === "/" 
-                ? pathname === "/" 
-                : pathname.startsWith(link.path);
-
             return (
               <Link key={link.name} href={link.path}>
-                <button
-                  className={`pixel-btn ${isActive ? "pixel-btn-active" : ""}`}
+                <motion.button
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="pixel-btn hover:bg-gray-200"
                 >
                   {link.name}
-                </button>
+                </motion.button>
               </Link>
             );
           })}
@@ -47,12 +45,18 @@ export default function Navigation() {
 
         {/* 右側：コンタクトアイコン */}
         <div className="flex items-center gap-4">
-          <a href="https://github.com/mini0824?tab=repositories" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-[#ff6b6b] hover:border-[#ff6b6b] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:translate-x-1 active:shadow-none">
+          <motion.a 
+            whileHover={{ y: -4, rotate: [0, -10, 10, -10, 10, 0] }}
+            transition={{ duration: 0.4 }}
+            href="https://github.com/mini0824?tab=repositories" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-[#ff6b6b] hover:border-[#ff6b6b] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:translate-x-1 active:shadow-none">
             <GithubLogo />
-          </a>
-          <a href="mailto:ryomijyo@gmail.com" className="p-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-[#4dabf7] hover:border-[#4dabf7] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:translate-x-1 active:shadow-none">
+          </motion.a>
+          <motion.a 
+            whileHover={{ y: -4, rotate: [0, -10, 10, -10, 10, 0] }}
+            transition={{ duration: 0.4 }}
+            href="mailto:ryomijyo@gmail.com" className="p-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-[#4dabf7] hover:border-[#4dabf7] transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:translate-x-1 active:shadow-none">
             <Mail size={24} />
-          </a>
+          </motion.a>
         </div>
         
       </div>

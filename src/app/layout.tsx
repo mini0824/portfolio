@@ -3,6 +3,8 @@ import { DotGothic16 } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import PixelParticles from "@/components/PixelParticles";
+import Script from "next/script";
 
 const dotGothic = DotGothic16({
   weight: "400",
@@ -26,7 +28,7 @@ export default function RootLayout({
       className={`${dotGothic.variable} h-full antialiased`}
     >
       <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" defer></script>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" strategy="lazyOnload" />
       </head>
       <body className={`${dotGothic.className} min-h-full flex flex-col font-pixel`}>
         <Navigation />
@@ -34,6 +36,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <PixelParticles />
       </body>
     </html>
   );

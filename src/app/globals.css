@@ -12,6 +12,10 @@
   --border-color: #2d3748;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f0f4f8;
   /* メインの背景：グリッドとドットの組み合わせ */

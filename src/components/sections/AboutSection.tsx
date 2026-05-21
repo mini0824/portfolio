@@ -1,9 +1,31 @@
-import Image from "next/image";
+"use client";
 
-export default function About() {
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+export default function AboutSection() {
+  const scrollVariant = {
+    hidden: { opacity: 0, scale: 0.4, rotateY: 180, y: 150 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      rotateY: 0, 
+      y: 0,
+      transition: { type: "spring", stiffness: 60, damping: 20 } 
+    }
+  };
+
   return (
-    <div className="p-8 md:p-16 flex flex-col items-center gap-16">
-      <section className="w-full max-w-4xl pixel-box p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center">
+    <section id="about" className="w-full flex flex-col items-center py-16 scroll-mt-24">
+      <motion.div
+        variants={scrollVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="w-full max-w-4xl pixel-box p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center mb-16"
+        style={{ perspective: 1000 }}
+        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+      >
         <div className="w-48 h-48 md:w-64 md:h-64 pixel-border bg-gray-200 relative overflow-hidden shrink-0">
           <Image 
             src="/profile.jpg" 
@@ -21,9 +43,17 @@ export default function About() {
             現在はUnityを活用したゲーム開発に没頭中。休日は手芸でモノづくりを楽しむなど、デジタルとアナログの両面からクリエイティブな探求を続けています。
           </p>
         </div>
-      </section>
+      </motion.div>
 
-      <section className="w-full max-w-4xl pixel-box p-6 md:p-10">
+      <motion.div 
+        variants={scrollVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="w-full max-w-4xl pixel-box p-6 md:p-10 mb-16"
+        style={{ perspective: 1000 }}
+        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+      >
         <h2 className="text-3xl mb-8 border-b-4 border-gray-800 inline-block">▶ BACKGROUND (教育背景)</h2>
         <ul className="space-y-8 text-lg relative border-l-4 border-gray-300 ml-4 pl-8">
           <li className="relative">
@@ -39,9 +69,17 @@ export default function About() {
             <p className="text-gray-600 mt-1">探究学習を通じた英語での論理的思考と多文化環境での調整力を習得。</p>
           </li>
         </ul>
-      </section>
+      </motion.div>
 
-      <section className="w-full max-w-4xl pixel-box p-6 md:p-10">
+      <motion.div 
+        variants={scrollVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="w-full max-w-4xl pixel-box p-6 md:p-10"
+        style={{ perspective: 1000 }}
+        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+      >
         <h2 className="text-3xl mb-8 border-b-4 border-gray-800 inline-block">▶ IDENTITY & VISION</h2>
         <div className="space-y-8 text-lg leading-relaxed">
           <div className="bg-gray-100 p-6 pixel-border">
@@ -59,7 +97,7 @@ export default function About() {
             </p>
           </div>
         </div>
-      </section>
-    </div>
+      </motion.div>
+    </section>
   );
 }

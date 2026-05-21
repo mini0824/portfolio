@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import AboutSection from "@/components/sections/AboutSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 
 export default function Home() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -92,7 +96,7 @@ export default function Home() {
           <p>「日中英の言語能力と、技術で世界を繋ぐクエストを遂行中」</p>
         </div>
 
-        <Link href="/about" className="mt-12">
+        <Link href="#about" className="mt-12">
           <button 
             ref={buttonRef}
             className="pixel-btn text-2xl px-10 py-5 shadow-xl"
@@ -101,6 +105,12 @@ export default function Home() {
           </button>
         </Link>
       </section>
+
+      {/* 各セクションをここに配置 */}
+      <AboutSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ProjectsSection />
     </div>
   );
 }
