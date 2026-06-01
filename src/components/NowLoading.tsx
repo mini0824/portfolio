@@ -7,27 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function NowLoading() {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
-  const [lastPath, setLastPath] = useState(pathname);
-
-  // 初回マウント時ロード
+  // パス遷移時（初回マウント時を含む）にローディング画面を表示し、1.2秒後にフェードアウトさせる
   useEffect(() => {
+    setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1200);
     return () => clearTimeout(timer);
-  }, []);
-
-  // パス遷移の監視
-  useEffect(() => {
-    if (pathname !== lastPath) {
-      setIsLoading(true);
-      setLastPath(pathname);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1200);
-      return () => clearTimeout(timer);
-    }
-  }, [pathname, lastPath]);
+  }, [pathname]);
 
   return (
     <AnimatePresence>

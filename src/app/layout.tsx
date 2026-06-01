@@ -30,6 +30,7 @@ export default function RootLayout({
     <html
       lang="ja"
       className={`${dotGothic.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
     >
       <head>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" strategy="lazyOnload" />
