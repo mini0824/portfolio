@@ -70,7 +70,7 @@ export const translations = {
       },
       cs2: {
         title: "Game & VR",
-        desc: "VRプロジェクトやゲーム開発のメインスキル。物理ベースの挙動やUIシステムを実装可能。"
+        desc: "VRプロジェクトやゲーム開発のメインスキル。物理ベース of 挙動やUIシステムを実装可能。"
       },
       cs3: {
         title: "Scripting",
@@ -82,7 +82,7 @@ export const translations = {
       }
     },
     projects: {
-      title: "INVENTORY (制作物)",
+      title: "PROJECTS (制作物)",
       proj1: {
         title: "Jumping game",
         desc: "Unityで開発中のアクションゲーム。爽快感のあるジャンプ操作とギミックを実装しています。",
@@ -99,9 +99,28 @@ export const translations = {
         title: "Artwork Gallery",
         desc: "趣味で描いている絵のコレクション。VRプロジェクトでのバッジデザインなども含みます。",
       },
+      proj5: {
+        title: "これってどんな食べ物？",
+        desc: "海外のローカル食堂での「読めないメニュー」を画像一枚で解決する、完全多言語対応のAIメニュー解説Webアプリ。",
+      },
+    },
+    whatFood: {
+      returnBtn: "RETURN TO PROJECTS",
+      title: "これってどんな食べ物？ (What kind of food is this?)",
+      subtitle: "海外食堂の「読めないメニュー」を即解決する多言語AIツール",
+      bgTitle: "プロジェクトの背景 ＆ 目的",
+      bgDesc: "ウズベキスタンやタイなどのローカルな食堂を訪れた際、現地の言葉で書かれたメニューから「どんな料理か」「何が入っているか」「どんな味か」を想像するのは困難でした。それを解決するため、メニューの写真をアップロードするだけで、AIが指定言語で料理の詳細を解説してくれるWebアプリを開発しました。単なる直訳ではなく、アレルギー情報やその料理の文化的背景まで補完して出力する設計にこだわっています。",
+      featuresTitle: "主な機能",
+      feature1Title: "1. グローバル多言語UI（完全ローカライズ）",
+      feature1Desc: "日本人以外の旅行者も利用できるよう、アプリの初期表示は英語に設定。言語セレクトボックスの選択に応じて、案内文、ボタン、アップロード枠などのシステムテキスト全体が、リアルタイムにその言語（英語・日本語・中国語・韓国語など）へと動的に裏返るUIを実現。",
+      feature2Title: "2. 画像解析＆構造化抽出",
+      feature2Desc: "スマートフォン等で撮影したメニュー画像をアップロードし、約70言語から好きな言語で詳細な解説を出力。",
+      feature3Title: "3. 文化背景の解説",
+      feature3Desc: "その料理が現地の文化でどのような立ち位置なのか、文脈（歴史的背景など）を踏まえた親切な解説を提供。",
+      techTitle: "使用技術 (Technology Stack)",
     },
     gallery: {
-      returnBtn: "RETURN TO INVENTORY",
+      returnBtn: "RETURN TO PROJECTS",
       title: "Artwork Gallery",
       ghostTitle: "Ghost Design",
       ghostDesc: "VR学生プロジェクトのために制作したお化けのキャラクターデザインです。実際のプロジェクトでは、このデザインを元に缶バッジも制作されました。",
@@ -212,7 +231,7 @@ export const translations = {
       }
     },
     projects: {
-      title: "INVENTORY (Projects)",
+      title: "PROJECTS (Projects)",
       proj1: {
         title: "Jumping Game",
         desc: "An action game under development in Unity, featuring responsive jump mechanics and stage gimmicks.",
@@ -229,9 +248,28 @@ export const translations = {
         title: "Artwork Gallery",
         desc: "A collection of personal drawings, including badge designs from student VR projects.",
       },
+      proj5: {
+        title: "What kind of food is this?",
+        desc: "A fully multilingual AI Web app that explains unreadable local menu items in detail with just a single photo.",
+      },
+    },
+    whatFood: {
+      returnBtn: "RETURN TO PROJECTS",
+      title: "What kind of food is this?",
+      subtitle: "A Multilingual AI Menu Explainer for Travelers",
+      bgTitle: "Project Background & Objectives",
+      bgDesc: "When visiting local diners in countries like Uzbekistan or Thailand, it was challenging to imagine what dishes were like, their ingredients, or flavors from menus written in local scripts. To solve this, I developed a Web application where users simply upload a photo of the menu, and the AI explains the dishes in their selected language. The system goes beyond direct translation, focusing on providing allergy information and the cultural background of the dishes.",
+      featuresTitle: "Key Features",
+      feature1Title: "1. Global Multilingual UI",
+      feature1Desc: "The interface defaults to English for global travelers. By selecting a language, all system texts—such as instructions, buttons, and upload drag-drops—dynamically switch in real-time (supporting English, Japanese, Chinese, Korean, etc.).",
+      feature2Title: "2. Image Analysis & Structured Extraction",
+      feature2Desc: "Upload menu photos taken with a smartphone and extract structured dish information in about 70 target languages.",
+      feature3Title: "3. Cultural Context Explanation",
+      feature3Desc: "Provides insights into how the dish is perceived locally, adding historical and cultural context for a richer dining experience.",
+      techTitle: "Technology Stack",
     },
     gallery: {
-      returnBtn: "RETURN TO INVENTORY",
+      returnBtn: "RETURN TO PROJECTS",
       title: "Artwork Gallery",
       ghostTitle: "Ghost Design",
       ghostDesc: "Character design created for a student VR project. These designs were manufactured into physical badges during the project.",
@@ -342,7 +380,7 @@ export const translations = {
       }
     },
     projects: {
-      title: "背包物品 (个人作品)",
+      title: "PROJECTS (个人作品)",
       proj1: {
         title: "Jumping Game (跳跃游戏)",
         desc: "使用Unity开发中的动作游戏。实现了爽快流畅的跳跃操作及关卡机关。",
@@ -359,9 +397,28 @@ export const translations = {
         title: "Artwork Gallery (艺术画廊)",
         desc: "个人插画合集，包括在学生VR项目中设计的徽章插图。",
       },
+      proj5: {
+        title: "这是什么食物？",
+        desc: "只需一张照片即可即时解析国外餐馆“看不懂菜单”问题，且完全支持多语言的AI菜单解析与文化背景说明工具。",
+      },
+    },
+    whatFood: {
+      returnBtn: "返回 PROJECTS",
+      title: "这是什么食物？ (What kind of food is this?)",
+      subtitle: "即时解决国外餐馆“看不懂菜单”的多语言AI助手",
+      bgTitle: "项目背景与目的",
+      bgDesc: "在乌兹别克斯坦或泰国等地的当地餐馆用餐时，仅凭当地文字书写的菜单很难想象“这是什么菜”、“里面有什么原料”或“味道如何”。为了解决这一问题，我开发了一款Web应用程序，用户只需上传菜单照片，AI就能以指定的语言详细解释菜品。不仅是简单的翻译，系统还特意设计为能够补充过敏原信息以及该菜品的文化背景。",
+      featuresTitle: "主要功能",
+      feature1Title: "1. 全球化多语言UI（完全本地化）",
+      feature1Desc: "为了让非日本游客也能无障碍使用，应用默认界面为英文。根据语言选择框的切换，引导语、按钮、上传边框等所有系统文本都能实时动态切换（支持英语、日语、中文、韩语等）。",
+      feature2Title: "2. 图像解析与结构化提取",
+      feature2Desc: "上传用手机拍摄的菜单照片，即可用约70种目标语言中的任意一种输出详细的菜品解析。",
+      feature3Title: "3. 文化背景说明",
+      feature3Desc: "结合当地文化背景，说明该菜品在当地的地位和历史渊源，提供更有深度的用餐体验。",
+      techTitle: "使用技术 (Technology Stack)",
     },
     gallery: {
-      returnBtn: "返回背包物品",
+      returnBtn: "返回 PROJECTS",
       title: "艺术画廊",
       ghostTitle: "幽灵角色设计",
       ghostDesc: "为VR学生项目制作的幽灵角色概念设计。该设计在项目实际运行中被制成了实体徽章。",

@@ -24,7 +24,8 @@ export default function ProjectsSection() {
     { key: "proj1", tag: "Unity / C#", link: "#", status: "IN PROGRESS" },
     { key: "proj2", tag: "Unity / C# / 3DCG", link: "#", status: "COMPLETED" },
     { key: "proj3", tag: "Next.js / Tailwind", link: "/", status: "VIEW MORE" },
-    { key: "proj4", tag: "Art / Design", link: "/projects/pixel-art-gallery", status: "VIEW MORE" }
+    { key: "proj4", tag: "Art / Design", link: "/projects/pixel-art-gallery", status: "VIEW MORE" },
+    { key: "proj5", tag: "Python / AI / Streamlit", link: "/projects/what-food", status: "VIEW MORE" }
   ] as const;
 
   const handleBtnClick = () => {
