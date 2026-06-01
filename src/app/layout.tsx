@@ -4,6 +4,10 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PixelParticles from "@/components/PixelParticles";
+import DreamyBackground from "@/components/DreamyBackground";
+import PixelFeathers from "@/components/PixelFeathers";
+import NowLoading from "@/components/NowLoading";
+import { LanguageProvider } from "@/context/LanguageContext";
 import Script from "next/script";
 
 const dotGothic = DotGothic16({
@@ -31,12 +35,17 @@ export default function RootLayout({
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" strategy="lazyOnload" />
       </head>
       <body className={`${dotGothic.className} min-h-full flex flex-col font-pixel`}>
-        <Navigation />
-        <main className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <Footer />
-        <PixelParticles />
+        <LanguageProvider>
+          <DreamyBackground />
+          <PixelFeathers />
+          <NowLoading />
+          <Navigation />
+          <main className="flex-1 flex flex-col">
+            {children}
+          </main>
+          <Footer />
+          <PixelParticles />
+        </LanguageProvider>
       </body>
     </html>
   );

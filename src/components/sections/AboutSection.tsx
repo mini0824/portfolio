@@ -2,21 +2,26 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function AboutSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const scrollVariant = {
-    hidden: { opacity: 0, scale: 0.4, rotateY: 180, y: 150 },
+    hidden: { opacity: 0, scale: 0.85, y: 60 },
     visible: { 
       opacity: 1, 
       scale: 1, 
-      rotateY: 0, 
       y: 0,
-      transition: { type: "spring", stiffness: 60, damping: 20 } 
+      transition: { type: "spring", stiffness: 50, damping: 15 } 
     }
   } as const;
 
   return (
     <section id="about" className="w-full flex flex-col items-center py-16 scroll-mt-24">
+      {/* PROFILE */}
       <motion.div
         variants={scrollVariant}
         initial="hidden"
@@ -24,11 +29,11 @@ export default function AboutSection() {
         viewport={{ once: false, amount: 0.2 }}
         className="w-full max-w-4xl pixel-box p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center mb-16"
         style={{ perspective: 1000 }}
-        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+        whileHover={{ y: -4, boxShadow: "0 12px 40px 0 rgba(229, 153, 247, 0.35)" }}
       >
-        <div className="w-48 h-48 md:w-64 md:h-64 pixel-border bg-gray-200 relative overflow-hidden shrink-0">
+        <div className="w-48 h-48 md:w-64 md:h-64 border border-white/20 bg-white/20 relative overflow-hidden shrink-0 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-sm">
           <Image 
-            src="/profile.jpg" 
+            src="/profile_v2.jpg" 
             alt="Meiru Liang Profile" 
             fill
             className="object-cover"
@@ -36,15 +41,21 @@ export default function AboutSection() {
           />
         </div>
         <div>
-          <h2 className="text-3xl mb-4 border-b-4 border-gray-800 inline-block">▶ PROFILE</h2>
-          <p className="text-lg leading-relaxed">
-            <strong>梁 美如（りょう みじょ）</strong>です。<br/>
-            日中英の3ヶ国語を操る言語能力を武器に、技術で世界の架け橋となるエンジニアを目指しています！<br/>
-            現在はUnityを活用したゲーム開発に没頭中。休日は手芸でモノづくりを楽しむなど、デジタルとアナログの両面からクリエイティブな探求を続けています。
+          <h2 className="text-3xl mb-4 border-b-2 border-purple-300/50 text-gray-800 inline-block font-bold">
+            {t.about.profileTitle}
+          </h2>
+          <p className="text-lg leading-relaxed text-gray-700">
+            {t.about.profileText.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </p>
         </div>
       </motion.div>
 
+      {/* BACKGROUND */}
       <motion.div 
         variants={scrollVariant}
         initial="hidden"
@@ -52,25 +63,28 @@ export default function AboutSection() {
         viewport={{ once: false, amount: 0.2 }}
         className="w-full max-w-4xl pixel-box p-6 md:p-10 mb-16"
         style={{ perspective: 1000 }}
-        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+        whileHover={{ y: -4, boxShadow: "0 12px 40px 0 rgba(229, 153, 247, 0.35)" }}
       >
-        <h2 className="text-3xl mb-8 border-b-4 border-gray-800 inline-block">▶ BACKGROUND (教育背景)</h2>
-        <ul className="space-y-8 text-lg relative border-l-4 border-gray-300 ml-4 pl-8">
+        <h2 className="text-3xl mb-8 border-b-2 border-purple-300/50 text-gray-800 inline-block font-bold">
+          {t.about.bgTitle}
+        </h2>
+        <ul className="space-y-8 text-lg relative border-l-2 border-white/20 ml-4 pl-8">
           <li className="relative">
-            <span className="absolute -left-[41px] top-1 w-5 h-5 bg-[#ff6b6b] rounded-full border-4 border-gray-800"></span>
-            <p className="font-bold text-xl text-[#ff6b6b]">2028年3月 卒業見込み</p>
-            <p className="mt-2 text-xl">工学院大学 情報学部 コンピュータ科学科 在籍</p>
-            <p className="text-gray-600 mt-1">CSの基礎、データ構造やアルゴリズムを学習中。</p>
+            <span className="absolute -left-[40px] top-1 w-5 h-5 bg-[#f783ac] rounded-full border-2 border-white/40 shadow-[0_0_8px_rgba(247,131,172,0.6)]"></span>
+            <p className="font-bold text-xl text-pink-600">{t.about.bg1Date}</p>
+            <p className="mt-2 text-xl text-gray-800 font-bold">{t.about.bg1Title}</p>
+            <p className="text-gray-600 mt-1">{t.about.bg1Desc}</p>
           </li>
           <li className="relative">
-            <span className="absolute -left-[41px] top-1 w-5 h-5 bg-[#4dabf7] rounded-full border-4 border-gray-800"></span>
-            <p className="font-bold text-xl text-[#4dabf7]">卒業</p>
-            <p className="mt-2 text-xl">東京都立国際高等学校 国際バカロレア（IB）コース</p>
-            <p className="text-gray-600 mt-1">探究学習を通じた英語での論理的思考と多文化環境での調整力を習得。</p>
+            <span className="absolute -left-[40px] top-1 w-5 h-5 bg-[#74c0fc] rounded-full border-2 border-white/40 shadow-[0_0_8px_rgba(116,192,252,0.6)]"></span>
+            <p className="font-bold text-xl text-blue-600">{t.about.bg2Date}</p>
+            <p className="mt-2 text-xl text-gray-800 font-bold">{t.about.bg2Title}</p>
+            <p className="text-gray-600 mt-1">{t.about.bg2Desc}</p>
           </li>
         </ul>
       </motion.div>
 
+      {/* IDENTITY & VISION */}
       <motion.div 
         variants={scrollVariant}
         initial="hidden"
@@ -78,22 +92,32 @@ export default function AboutSection() {
         viewport={{ once: false, amount: 0.2 }}
         className="w-full max-w-4xl pixel-box p-6 md:p-10"
         style={{ perspective: 1000 }}
-        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+        whileHover={{ y: -4, boxShadow: "0 12px 40px 0 rgba(229, 153, 247, 0.35)" }}
       >
-        <h2 className="text-3xl mb-8 border-b-4 border-gray-800 inline-block">▶ IDENTITY & VISION</h2>
+        <h2 className="text-3xl mb-8 border-b-2 border-purple-300/50 text-gray-800 inline-block font-bold">
+          {t.about.identityTitle}
+        </h2>
         <div className="space-y-8 text-lg leading-relaxed">
-          <div className="bg-gray-100 p-6 pixel-border">
-            <h3 className="font-bold text-2xl text-[#ff6b6b] mb-4">アイデンティティ</h3>
-            <p>
-              日本生まれの中国人。日中両言語がネイティブレベル。<br/>
-              IB課程での探究学習を通じ、英語での論理的思考と多文化環境での調整力を習得しました。
+          <div className="bg-white/60 p-6 border border-white/20 rounded-xl backdrop-blur-sm">
+            <h3 className="font-bold text-2xl text-[#f783ac] mb-4">{t.about.idHeader}</h3>
+            <p className="text-gray-700 font-medium">
+              {t.about.idDesc.split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
             </p>
           </div>
-          <div className="bg-gray-100 p-6 pixel-border">
-            <h3 className="font-bold text-2xl text-[#4dabf7] mb-4">エンジニアとしての志</h3>
-            <p>
-              CSの基礎を重視しつつ、言語と技術の壁を溶かし、グローバルな課題を解決するエンジニアを目指しています。<br/>
-              将来はシンガポールや香港などの海外拠点での活躍も視野に入れています。
+          <div className="bg-white/60 p-6 border border-white/20 rounded-xl backdrop-blur-sm">
+            <h3 className="font-bold text-2xl text-[#74c0fc] mb-4">{t.about.visionHeader}</h3>
+            <p className="text-gray-700 font-medium">
+              {t.about.visionDesc.split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
             </p>
           </div>
         </div>

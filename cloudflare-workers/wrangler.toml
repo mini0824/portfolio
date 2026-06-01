@@ -1,0 +1,7 @@
+name = "portfolio-email-worker"
+main = "index.js"
+compatibility_date = "2024-03-01"
+
+# 本番環境デプロイ後に、Cloudflareの管理画面または `npx wrangler secret put` で環境変数を設定してください:
+# 1. TO_EMAIL (転送先のあなたのメールアドレス)
+# 2. RESEND_API_KEY (ResendなどのAPIキー)

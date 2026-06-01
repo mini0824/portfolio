@@ -2,55 +2,27 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import AboutSection from "@/components/sections/AboutSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
+import { playButtonSound } from "@/utils/audio";
 
 export default function Home() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const { language } = useLanguage();
+  const t = translations[language];
   const statusBoxRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    // anime.jsが読み込まれるのを待つ
     const startAnimations = () => {
       const anime = (window as any).anime;
       if (!anime) {
         setTimeout(startAnimations, 100);
         return;
-      }
-
-      // タイトルの文字分割アニメーション
-      if (titleRef.current) {
-        const text = titleRef.current.textContent || "";
-        titleRef.current.innerHTML = text
-          .split("")
-          .map((char) => `<span class="letter inline-block">${char === " " ? "&nbsp;" : char}</span>`)
-          .join("");
-
-        anime.timeline({ loop: false })
-          .add({
-            targets: ".letter",
-            translateY: [40, 0],
-            translateZ: 0,
-            opacity: [0, 1],
-            easing: "easeOutExpo",
-            duration: 1200,
-            delay: (el: any, i: number) => 500 + 30 * i,
-          });
-      }
-
-      // ステータスボックスの展開アニメーション
-      if (statusBoxRef.current) {
-        anime({
-          targets: statusBoxRef.current,
-          scaleY: [0, 1],
-          opacity: [0, 1],
-          easing: "easeOutElastic(1, .8)",
-          duration: 1500,
-          delay: 800,
-        });
       }
 
       // ボタンの浮遊アニメーション
@@ -69,48 +41,56 @@ export default function Home() {
     startAnimations();
   }, []);
 
+  const handleBtnClick = () => {
+    playButtonSound("action");
+  };
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-8 md:p-16 relative overflow-hidden">
-      <section className="w-full max-w-4xl flex flex-col items-center text-center gap-8 mt-10">
-        <h1 
-          ref={titleRef}
-          className="text-5xl md:text-7xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b6b] to-[#fcc419] pixel-border p-6 bg-white"
-        >
-          MEIRU LIANG
-        </h1>
-        
-        <div 
-          ref={statusBoxRef}
-          className="pixel-box p-6 mt-8 max-w-2xl w-full text-left bg-white opacity-0 origin-top"
-        >
-          <h2 className="text-2xl border-b-4 border-gray-800 inline-block mb-4">▶ STATUS</h2>
-          <ul className="text-lg space-y-2">
-            <li><span className="font-bold text-[#4dabf7]">NAME:</span> 梁 美如 (Meiru Liang)</li>
-            <li><span className="font-bold text-[#4dabf7]">LEVEL:</span> 22</li>
-            <li><span className="font-bold text-[#4dabf7]">CLASS:</span> 情報学部 3年 (28卒)</li>
-            <li><span className="font-bold text-[#4dabf7]">JOB:</span> 多言語エンジニア</li>
-          </ul>
+      {/* 1. ファーストビュー：キャッチコピーとSTART GAMEのみ */}
+      <section className="w-full max-w-4xl flex flex-col items-center text-center justify-center gap-8 min-h-[calc(100vh-140px)] relative z-30 pointer-events-none">
+        <div className="mt-4 text-xl md:text-2xl font-bold leading-relaxed px-4 text-purple-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)]">
+          <p>{t.status.tagline}</p>
         </div>
 
-        <div className="mt-4 text-xl md:text-2xl font-bold leading-relaxed px-4">
-          <p>「日中英の言語能力と、技術で世界を繋ぐクエストを遂行中」</p>
-        </div>
-
-        <Link href="#about" className="mt-12">
+        <Link href="#status-section" className="mt-4" onClick={handleBtnClick}>
           <button 
             ref={buttonRef}
-            className="pixel-btn text-2xl px-10 py-5 shadow-xl"
+            className="pixel-btn text-2xl px-10 py-5"
           >
-            ▶ START GAME
+            {t.status.startGame}
           </button>
         </Link>
       </section>
 
+      {/* 2. スクロール後の最初のコンテンツ：STATUSブロック */}
+      <section id="status-section" className="w-full flex flex-col items-center py-8 scroll-mt-24 relative z-30 pointer-events-none">
+        <motion.div 
+          initial={{ opacity: 0, scaleY: 0 }}
+          whileInView={{ opacity: 1, scaleY: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ type: "spring", stiffness: 60, damping: 15 }}
+          className="pixel-box p-6 max-w-2xl w-full text-left origin-top"
+        >
+          <h2 className="text-2xl border-b-2 border-purple-300/50 text-gray-800 inline-block mb-4 font-bold">
+            {t.status.title}
+          </h2>
+          <ul className="text-lg space-y-2 text-gray-700 font-bold">
+            <li><span className="font-bold text-purple-700">{t.status.name}</span> {t.status.nameVal}</li>
+            <li><span className="font-bold text-purple-700">{t.status.level}</span> 22</li>
+            <li><span className="font-bold text-purple-700">{t.status.class}</span> {t.status.classVal}</li>
+            <li><span className="font-bold text-purple-700">{t.status.job}</span> {t.status.jobVal}</li>
+          </ul>
+        </motion.div>
+      </section>
+
       {/* 各セクションをここに配置 */}
-      <AboutSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <ProjectsSection />
+      <div className="w-full relative z-30 flex flex-col items-center pointer-events-none">
+        <AboutSection />
+        <ExperienceSection />
+        <SkillsSection />
+        <ProjectsSection />
+      </div>
     </div>
   );
 }

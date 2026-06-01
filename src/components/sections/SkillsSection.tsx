@@ -1,18 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function SkillsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const scrollVariant = {
-    hidden: { opacity: 0, scale: 0.4, rotateY: 180, y: 150 },
+    hidden: { opacity: 0, scale: 0.85, y: 60 },
     visible: { 
       opacity: 1, 
       scale: 1, 
-      rotateY: 0, 
       y: 0,
-      transition: { type: "spring", stiffness: 60, damping: 20 } 
+      transition: { type: "spring", stiffness: 50, damping: 15 } 
     }
-  };
+  } as const;
+
+  const csSkills = [
+    { key: "cs1", tags: "Java / C / MATLAB" },
+    { key: "cs2", tags: "C# / Unity" },
+    { key: "cs3", tags: "Python" },
+    { key: "cs4", tags: "TypeScript / React / Next.js" },
+  ] as const;
 
   return (
     <section id="skills" className="w-full flex flex-col items-center py-16 scroll-mt-24">
@@ -23,69 +34,55 @@ export default function SkillsSection() {
         viewport={{ once: false, amount: 0.2 }}
         className="w-full max-w-4xl pixel-box p-6 md:p-10"
         style={{ perspective: 1000 }}
-        whileHover={{ y: -4, boxShadow: "0px 12px 0px 0px rgba(0,0,0,0.1)" }}
+        whileHover={{ y: -4, boxShadow: "0 12px 40px 0 rgba(229, 153, 247, 0.35)" }}
       >
-        <h2 className="text-3xl mb-10 border-b-4 border-gray-800 inline-block">▶ EQUIPMENT (スキルセット)</h2>
+        <h2 className="text-3xl mb-10 border-b-2 border-purple-300/50 text-gray-800 inline-block font-bold">
+          {t.skills.title}
+        </h2>
         
+        {/* Computer Science & Development */}
         <div className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 text-[#ff6b6b] flex items-center gap-2">
-            <span>⚔️</span> Computer Science & Development
+          <h3 className="text-2xl font-bold mb-6 text-[#f783ac]">
+            {t.skills.csTitle}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div 
-              className="border-2 border-gray-300 p-5 bg-white shadow-sm hover:border-[#ff6b6b] transition-colors"
-              whileHover={{ scale: 1.03, rotate: -1 }}
-            >
-              <h4 className="font-bold text-xl border-b-2 border-gray-200 pb-2 mb-3">CS Basics</h4>
-              <p className="font-bold text-lg">Java / C言語 / MATLAB</p>
-              <p className="text-base mt-2 text-gray-600">大学の講義・演習を通じ、データ構造やアルゴリズムの基礎として習得。</p>
-            </motion.div>
-            <motion.div 
-              className="border-2 border-gray-300 p-5 bg-white shadow-sm hover:border-[#ff6b6b] transition-colors"
-              whileHover={{ scale: 1.03, rotate: 1 }}
-            >
-              <h4 className="font-bold text-xl border-b-2 border-gray-200 pb-2 mb-3">Game & VR</h4>
-              <p className="font-bold text-lg">C# / Unity</p>
-              <p className="text-base mt-2 text-gray-600">VRプロジェクトやゲーム開発のメインスキル。物理ベースの挙動やUIシステムを実装可能。</p>
-            </motion.div>
-            <motion.div 
-              className="border-2 border-gray-300 p-5 bg-white shadow-sm hover:border-[#ff6b6b] transition-colors"
-              whileHover={{ scale: 1.03, rotate: -1 }}
-            >
-              <h4 className="font-bold text-xl border-b-2 border-gray-200 pb-2 mb-3">Scripting</h4>
-              <p className="font-bold text-lg">Python</p>
-              <p className="text-base mt-2 text-gray-600">データ処理や自動化スクリプトに使用。</p>
-            </motion.div>
-            <motion.div 
-              className="border-2 border-gray-300 p-5 bg-white shadow-sm hover:border-[#ff6b6b] transition-colors"
-              whileHover={{ scale: 1.03, rotate: 1 }}
-            >
-              <h4 className="font-bold text-xl border-b-2 border-gray-200 pb-2 mb-3">Web</h4>
-              <p className="font-bold text-lg">TypeScript / React / Next.js</p>
-              <p className="text-base mt-2 text-gray-600">本ポートフォリオサイトの構築などに活用。</p>
-            </motion.div>
+            {csSkills.map((skill) => {
+              const skillData = t.skills[skill.key];
+              return (
+                <motion.div 
+                  key={skill.key}
+                  className="border border-white/25 p-5 bg-white/60 backdrop-blur-sm shadow-sm hover:border-[#f783ac] transition-colors rounded-xl"
+                  whileHover={{ scale: 1.03, rotate: skill.key === "cs1" || skill.key === "cs3" ? -1 : 1 }}
+                >
+                  <h4 className="font-bold text-xl border-b border-gray-200 pb-2 mb-3 text-gray-800 font-bold">{skillData.title}</h4>
+                  <p className="font-bold text-lg text-purple-700">{skill.tags}</p>
+                  <p className="text-base mt-2 text-gray-600">{skillData.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
+        {/* Global Communication */}
         <div>
-          <h3 className="text-2xl font-bold mb-6 text-[#4dabf7] flex items-center gap-2">
-            <span>🌍</span> Global Communication
+          <h3 className="text-2xl font-bold mb-6 text-[#74c0fc]">
+            {t.skills.globalTitle}
           </h3>
           <motion.div 
-            className="space-y-6 bg-gray-100 p-6 pixel-border"
-            whileHover={{ y: -4 }}
+            className="space-y-6 bg-white/60 p-6 border border-white/20 rounded-xl backdrop-blur-sm"
+            whileHover={{ y: -2 }}
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-gray-300 pb-4">
-              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0">日本語</span>
-              <span className="flex-1 text-lg font-bold text-gray-700">Native (JLPT N1)</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-dotted border-purple-300/20 pb-4">
+              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0 text-gray-800">{t.skills.jp}</span>
+              <span className="flex-1 text-lg font-bold text-gray-600">{t.skills.nativeJp}</span>
             </div>
-            <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-gray-300 pb-4">
-              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0">中国語</span>
-              <span className="flex-1 text-lg font-bold text-gray-700">Native (HSK 6級 268点)</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-dotted border-purple-300/20 pb-4">
+              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0 text-gray-800">{t.skills.zh}</span>
+              <span className="flex-1 text-lg font-bold text-gray-600">{t.skills.nativeZh}</span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center justify-between pb-2">
-              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0">英語</span>
-              <span className="flex-1 text-lg font-bold text-gray-700">Business (IELTS 7.0 / TOEIC 925点)</span>
+              <span className="text-xl font-bold md:w-40 mb-2 md:mb-0 text-gray-800">{t.skills.en}</span>
+              <span className="flex-1 text-lg font-bold text-gray-600">{t.skills.businessEn}</span>
             </div>
           </motion.div>
         </div>
