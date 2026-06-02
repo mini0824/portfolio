@@ -4,10 +4,21 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
+/**
+ * @component NowLoading
+ * @description ページ遷移時および初期ロード時に全画面に覆いかぶさる、ゲーム風ローディングスクリーンです。
+ * 
+ * [What]
+ * ページのパス（URL）が変更されたタイミングで自動的に出現し、パステル調の跳ねるブロックアニメーションとともに約1.2秒の待機演出を表示したあと、滑らかにフェードアウトします。
+ * 
+ * [Why - 設計とタイマー管理の選定理由]
+ * 1. ページ遷移時に発生し得るコンテンツレンダリングのタイムラグやちらつきをユーザーに意識させず、ポートフォリオの世界観（8-bitゲーム風クエスト）を補強してブランド表現を高めるため。
+ * 2. 状態の更新（isLoadingのトグル）によるエフェクトの再実行とクリーンアップ関数の自動呼び出し（clearTimeout）が競合して無限ロードが起きるのを防ぐため、依存配列を `[pathname]` のみに絞った単一のシンプルな `useEffect` に統合。状態更新時の不要なタイマーキャンセルを100%防ぎ、安定動作を実現するため。
+ */
 export default function NowLoading() {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
-  // パス遷移時（初回マウント時を含む）にローディング画面を表示し、1.2秒後にフェードアウトさせる
+  
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
