@@ -2,14 +2,14 @@
 
 A retro 8-bit themed, highly interactive, and trilingual (Japanese, English, Chinese) portfolio website built with Next.js and React.
 
-## 🌐 Live Website
+##  Live Website
 
 The portfolio is deployed and hosted on Cloudflare Workers.
 *   **Live URL**: [https://portfolio.onemijyo.workers.dev/](https://portfolio.onemijyo.workers.dev/)
 
 ---
 
-## 🎮 Concept & Core Features
+##  Concept & Core Features
 
 Designed to be more than a static resume, this website offers an engaging game-like experience to showcase technical depth and trilingual communication skills.
 
@@ -27,7 +27,7 @@ Designed to be more than a static resume, this website offers an engaging game-l
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 ### Frontend & Core
 *   **Next.js 16 (App Router / Turbopack)**
@@ -52,7 +52,7 @@ Designed to be more than a static resume, this website offers an engaging game-l
 
 ---
 
-## 📂 Key Architecture & Code Rationale
+##  Key Architecture & Code Rationale
 
 ### 1. [LanguageContext.tsx](src/context/LanguageContext.tsx)
 *   **What**: Manages Japanese/English/Chinese language states.
@@ -68,7 +68,7 @@ Designed to be more than a static resume, this website offers an engaging game-l
 
 ---
 
-## 🚀 Setup & Local Development
+##  Setup & Local Development
 
 ### 1. Install Dependencies
 ```bash
